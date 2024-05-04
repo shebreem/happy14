@@ -35,7 +35,6 @@ function draw() {
   box(100);
   pop();
 
-  // Display text on the cube
   push();
   translate(currentPositionX, currentPositionY, currentPositionZ);
   rotateX(rotationX);
@@ -46,14 +45,12 @@ function draw() {
   fill(255);
   text("glad i am turning 14", 0, 0);
   pop();
-
-  // Update the cube's rotation every 2 seconds
+  
   if (millis() - lastRotationUpdateTime >= positionUpdateInterval && !isDragging) {
     updateCubeRotation();
     lastRotationUpdateTime = millis();
   }
 
-  // Update cube position if dragging
   if (isDragging) {
     currentPositionX += (mouseX - previousMousePosition.x) * 0.01;
     currentPositionY += (mouseY - previousMousePosition.y) * 0.01;
@@ -62,7 +59,6 @@ function draw() {
       y: mouseY
     };
   } else {
-    // Smoothly transition to the target rotation
     rotationX += (targetRotationX - rotationX) * rotationChangeFraction;
     rotationY += (targetRotationY - rotationY) * rotationChangeFraction;
     rotationZ += (targetRotationZ - rotationZ) * rotationChangeFraction;
@@ -82,7 +78,6 @@ function mouseReleased() {
 }
 
 function updateCubeRotation() {
-  // Set new target rotation
   targetRotationX = random(-PI, PI);
   targetRotationY = random(-PI, PI);
   targetRotationZ = random(-PI, PI);
